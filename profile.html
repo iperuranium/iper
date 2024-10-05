@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cambay&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cambay&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Cambay', sans-serif;
+            background-color: #f6f3e9;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #124A9D;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header h1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Sidebar Toggle Button in Header */
+        .toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .toggle-btn img {
+            width: 30px;
+            cursor: pointer;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            display: flex;
+            flex: 1;
+            background-color: #f0efe8;
+        }
+
+        /* Sidebar Fully Collapsed */
+        .sidebar {
+            background-color: #f4d06f; /* Default color */
+            width: 0;
+            overflow: hidden;
+            transition: width 0.5s, background-color 0.5s;
+            flex-direction: column;
+        }
+
+        /* Sidebar Expanded State */
+        .sidebar.expanded {
+            width: 170px;
+            background-color: #F5DE87; /* Change this color for expanded sidebar */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 20px;
+        }
+
+        .sidebar li {
+            margin: 10px 0;  /* Adjust margin for better spacing */
+            font-size: 18px;
+        }
+
+        .sidebar li a {
+            text-decoration: none;
+            color: #382900;
+        }
+
+        .sidebar li img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            color: #b5a866;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Profile Page Styling */
+        .profile-banner {
+            height: 150px;
+            background-color: #d3d3d3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-info img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
+
+        .profile-info .user-details {
+            margin-left: 20px;
+        }
+
+        .user-details h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .user-details p {
+            margin: 5px 0 0;
+            color: #555;
+        }
+
+        .content-sections {
+            display: flex;
+            margin: 20px;
+            gap: 20px;
+        }
+
+        /* Information Section Styling */
+        .info-section {
+            background-color: #124A9D;
+            color: white;
+            padding: 20px;
+            width: 30%;
+        }
+
+        .info-section h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+
+        .info-section p {
+            margin: 5px 0;
+        }
+
+        /* Posts Section Styling */
+        .posts-section {
+            background-color: #f5eab7;
+            padding: 20px;
+            width: 70%;
+        }
+
+        .posts-section nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .posts-section nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><a href="#">Profile Page</a></h1>
+            <button class="toggle-btn" id="toggle-btn">
+                <img src="sidebar.png" alt="Toggle Sidebar">
+            </button>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <ul id="sidebar-content">
+                    <li class="section-header">My Account</li>
+                    <li><a href="#"><img src="create.png" alt="Create">Create</a></li>
+                    <li><a href="#"><img src="buy.png" alt="Buy">Buy</a></li>
+                    <li><a href="#"><img src="message.png" alt="Messages">Messages</a></li>
+                    <li><a href="#"><img src="my ideas.png" alt="My Ideas">My Ideas</a></li>
+                    <li><a href="#"><img src="drafts.png" alt="Drafts">Drafts</a></li>
+                    <li class="section-header">Support</li>
+                    <li><a href="#"><img src="settings.png" alt="Settings">Settings</a></li>
+                    <li><a href="#"><img src="contact.png" alt="Contact Us">Contact Us</a></li>
+                </ul>
+            </aside>
+
+            <div class="content">
+                <!-- Profile Banner -->
+                <div class="profile-banner">
+                    <div class="profile-info">
+                        <img src="default-pfp.png" alt="Profile Picture">
+                        <div class="user-details">
+                            <h2>John Smith</h2>
+                            <p>Description and short bio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Sections -->
+                <div class="content-sections">
+                    <!-- Information Section -->
+                    <div class="info-section">
+                        <h3>Information</h3>
+                        <p>Occupation</p>
+                        <p>Main Skills</p>
+                        <p>Nationality</p>
+                        <p>Age</p>
+                        <p>Gender</p>
+                    </div>
+
+                    <!-- Posts Section -->
+                    <div class="posts-section">
+                        <nav>
+                            <a href="#">Posts</a>
+                            <a href="#">About</a>
+                            <a href="#">Projects</a>
+                            <a href="#">More</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        // Toggle the sidebar open/close
+        toggleBtn.addEventListener('click', () => {
+            if (sidebar.classList.contains('expanded')) {
+                sidebar.classList.remove('expanded');
+            } else {
+                sidebar.classList.add('expanded');
+            }
+        });
+    </script>
+</body>
+</html>

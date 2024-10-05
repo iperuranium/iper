@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f7f7;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #f4d06f;
+    width: 200px;  /* Adjusted for expanded state */
+    padding: 20px;
+    transition: width 0.5s;
+    display: flex;  /* Flexbox for centering */
+    flex-direction: column;
+    align-items: center;  /* Center content horizontally */
+    justify-content: center;  /* Center content vertically */
+    font-family: 'Cambay', sans-serif;  /* Cambay font applied */
+
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.sidebar a {
+    color: #382900; 
+    text-decoration: none;  
+}
+
+
+/* Main Profile Section Styling */
+.main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f0efe8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a5465;
+    padding: 15px;
+    color: white;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.profile-menu {
+    display: flex;
+    align-items: center;
+}
+
+.profile-menu .icon {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.profile-menu .menu {
+    font-size: 24px;
+}
+
+/* Profile Card Styling */
+.profile-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: lightgray;
+    margin-right: 20px;
+}
+
+.profile-info h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: gray;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+}
+
+/* Content Section */
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.section {
+    width: 48%;
+    background-color: white;
+    padding: 20px;
+}
+
+.section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.section p {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.toggle-btn img {
+    width: 30px;  /* Adjust image width */
+    cursor: pointer;  /* Ensures pointer cursor on hover */
+    display: block;
+    margin: 0 auto;  /* Center the image */
+}
+

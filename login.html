@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iperuranium - Login Page</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <style>
+        /* Define the local Cambay font using @font-face */
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-Italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-BoldItalic.ttf') format('truetype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        /* Now apply Cambay font family throughout the document */
+        body {
+            margin: 0;
+            font-family: 'Cambay', sans-serif;
+            background-color: #f6f3e9;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #124A9D;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        .header h1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Sidebar Toggle Button in Header */
+        .toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .toggle-btn img {
+            width: 30px;
+            cursor: pointer;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            display: flex;
+            flex: 1;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        /* Sidebar Fully Collapsed */
+        .sidebar {
+            background-color: #f4d06f; /* Default color */
+            width: 0;
+            overflow: hidden;
+            transition: width 0.5s, background-color 0.5s;
+            flex-direction: column;
+        }
+
+        /* Sidebar Expanded State */
+        .sidebar.expanded {
+            width: 170px;
+            background-color: #F5DE87; /* Change this color for expanded sidebar */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;  /* Adjust margin for better spacing */
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar li a {
+            text-decoration: none;
+            color: #382900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar li img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            color: #b5a866;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        /* Content Section Styling */
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            background-color: #f6f3e9;
+        }
+
+        .login-left {
+            background-color: #f5de87;
+            padding: 50px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-left h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .login-left p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .login-right {
+            background-color: #f0efe8;
+            padding: 50px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .login-right img {
+            width: 450px;
+            height: auto;
+            margin-bottom: 0px;
+            transform: translateY(-45px);
+        }
+
+        .login-right button {
+            width: 250px;
+            padding: 15px;
+            margin: 10px;
+            font-size: 22px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transform: translateY(-95px);
+        }
+
+        .login-right .join-btn {
+            background-color: #124A9D;
+            color: white;
+            transform: translateY(-95px);
+        }
+
+        .login-right .login-btn {
+            background-color: #c1d9f5;
+            color: black;
+        }
+
+        .form-input {
+            width: 250px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 18px;
+        }
+
+        .link {
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><a href="#">Iperuranium</a></h1>
+            <button class="toggle-btn" id="toggle-btn">
+                <img src="sidebar.png" alt="Toggle Sidebar">
+            </button>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <ul id="sidebar-content">
+                    <li class="section-header">My Account</li>
+                    <li><a href="#"><img src="create.png" alt="Create">Create</a></li>
+                    <li><a href="#"><img src="buy.png" alt="Buy">Buy</a></li>
+                    <li><a href="#"><img src="message.png" alt="Messages">Messages</a></li>
+                    <li><a href="#"><img src="my ideas.png" alt="My Ideas">My Ideas</a></li>
+                    <li><a href="#"><img src="drafts.png" alt="Drafts">Drafts</a></li>
+                    <li class="section-header">Support</li>
+                    <li><a href="#"><img src="settings.png" alt="Settings">Settings</a></li>
+                    <li><a href="#"><img src="contact.png" alt="Contact Us">Contact Us</a></li>
+                </ul>
+            </aside>
+
+            <div class="content">
+                <!-- Left Side: Welcome Section -->
+                <div class="login-left">
+                    <h1>Welcome to IPERURANIUM</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                </div>
+
+                <!-- Right Side: Join/Login Section -->
+                <div class="login-right" id="form-container">
+                    <img src="iperlogo.png" alt="Iperuranium Logo">
+                    <button class="join-btn" id="join-btn">Join Now</button>
+                    <button class="login-btn" id="login-btn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        // Toggle the sidebar open/close
+        toggleBtn.addEventListener('click', () => {
+            if (sidebar.classList.contains('expanded')) {
+                sidebar.classList.remove('expanded');
+            } else {
+                sidebar.classList.add('expanded');
+            }
+        });
+
+        // Form container for dynamic content
+        const formContainer = document.getElementById('form-container');
+        const joinBtn = document.getElementById('join-btn');
+        const loginBtn = document.getElementById('login-btn');
+
+        // Switch to Join Now form when "Join Now" button is clicked
+        joinBtn.addEventListener('click', function() {
+            formContainer.innerHTML = `
+                <img src="iperlogo.png" alt="Iperuranium Logo">
+                <input type="text" class="form-input" placeholder="Email">
+                <input type="password" class="form-input" placeholder="Password">
+                <button class="join-btn">Join Now</button>
+                <a href="#" class="link" id="switch-to-login">Log into an existing account</a>
+            `;
+            // Switch back to login
+            document.getElementById('switch-to-login').addEventListener('click', function(event) {
+                event.preventDefault();
+                showLoginForm();
+            });
+        });
+
+        // Switch to Login form when "Login" button is clicked
+        loginBtn.addEventListener('click', function() {
+            formContainer.innerHTML = `
+                <img src="iperlogo.png" alt="Iperuranium Logo">
+                <input type="text" class="form-input" placeholder="Email">
+                <input type="password" class="form-input" placeholder="Password">
+                <button class="login-btn">Login</button>
+                <a href="#" class="link" id="switch-to-join">Don’t have an account? Join now</a>
+            `;
+            // Switch back to Join
+            document.getElementById('switch-to-join').addEventListener('click', function(event) {
+                event.preventDefault();
+                showJoinForm();
+            });
+        });
+
+        // Function to show the default login form
+        function showLoginForm() {
+            formContainer.innerHTML = `
+                <img src="iperlogo.png" alt="Iperuranium Logo">
+                <input type="text" class="form-input" placeholder="Email">
+                <input type="password" class="form-input" placeholder="Password">
+                <button class="login-btn">Login</button>
+                <a href="#" class="link" id="switch-to-join">Don’t have an account? Join now</a>
+            `;
+            document.getElementById('switch-to-join').addEventListener('click', function(event) {
+                event.preventDefault();
+                showJoinForm();
+            });
+        }
+
+        // Function to show the Join Now form
+        function showJoinForm() {
+            formContainer.innerHTML = `
+                <img src="iperlogo.png" alt="Iperuranium Logo">
+                <input type="text" class="form-input" placeholder="Email">
+                <input type="password" class="form-input" placeholder="Password">
+                <button class="join-btn">Join Now</button>
+                <a href="#" class="link" id="switch-to-login">Log into an existing account</a>
+            `;
+            document.getElementById('switch-to-login').addEventListener('click', function(event) {
+                event.preventDefault();
+                showLoginForm();
+            });
+        }
+    </script>
+</body>
+</html>

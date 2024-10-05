@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iperuranium - JavaScript Version</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <style>
+        /* Define the local Cambay font using @font-face */
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-Italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Cambay';
+            src: url('Cambay-BoldItalic.ttf') format('truetype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        /* Apply Cambay font family throughout the document */
+        body {
+            margin: 0;
+            font-family: 'Cambay', sans-serif;
+            background-color: #f6f3e9;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #124A9D;
+            color: white;
+            padding: -100px;
+            display: flex;
+            justify-content: center;  /* Center the title */
+            align-items: center;
+            position: relative;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        .header img {
+            width: 200px; /* Adjust the size of the logo */
+            height: auto; /* Keep aspect ratio */
+        }
+
+        /* Sidebar Toggle Button in Header */
+        .toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .toggle-btn img {
+            width: 30px;
+            cursor: pointer;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            display: flex;
+            flex: 1;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        /* Sidebar Fully Collapsed */
+        .sidebar {
+            background-color: #f4d06f; /* Default color */
+            width: 0;
+            overflow: hidden;
+            transition: width 0.5s, background-color 0.5s;
+            flex-direction: column;
+        }
+
+        /* Sidebar Expanded State */
+        .sidebar.expanded {
+            width: 170px;
+            background-color: #F5DE87; /* Change this color for expanded sidebar */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;  /* Adjust margin for better spacing */
+            font-size: 18px;
+        }
+
+        .sidebar li a {
+            text-decoration: none;
+            color: #382900;
+            flex-grow: 1;
+        }
+
+        .sidebar li img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            color: #b5a866;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        .sidebar li {
+            display: flex;
+            align-items: center;
+            gap: 10px;  /* Add space between icon and text */
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .add-button {
+            background-color: #f4d06f;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* White box reduced by 30% */
+        .idea-card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 70%; /* 30% less wide */
+            margin: 0 auto; /* Center the box */
+        }
+
+        .idea-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 20px;
+        }
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        .user-role {
+            color: grey;
+            font-size: 14px;
+        }
+
+        .blank-box {
+            width: 350px;
+            height: 250px;
+            background-color: #f0f0f0;
+            margin:
+        }
+
+        .idea-content {
+            padding-left: 30px;
+            flex-grow: 1;
+        }
+
+        .idea-content h2 {
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        .idea-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+            font-family: 'Cambay', sans-serif;
+        }
+
+        .idea-arrow {
+            font-size: 40px;
+            color: #555;
+        }
+
+        .subscriptions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f4d06f;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .subscriptions-content {
+            display: none;
+            background-color: #f4d06f;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        // Create the container div
+        const container = document.createElement('div');
+        container.className = 'container';
+        document.body.appendChild(container);
+
+        // Create the header
+        const header = document.createElement('header');
+        header.className = 'header';
+        container.appendChild(header);
+
+        const headerLogo = document.createElement('img');
+        headerLogo.src = 'whitelogo.png';  // Path to your logo
+        headerLogo.alt = 'Iperuranium Logo';
+        header.appendChild(headerLogo);
+
+        // Create the toggle button in the header
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'toggle-btn';
+        toggleBtn.id = 'toggle-btn';
+
+        const sidebarIcon = document.createElement('img');
+        sidebarIcon.src = 'sidebar.png';  // Path to the image
+        sidebarIcon.alt = 'Toggle Sidebar';
+        sidebarIcon.style.width = '30px';  // Adjust size as needed
+        toggleBtn.appendChild(sidebarIcon);
+
+        header.appendChild(toggleBtn);
+
+        // Create the main content section
+        const mainContent = document.createElement('div');
+        mainContent.className = 'main-content';
+        container.appendChild(mainContent);
+
+        // Create the sidebar
+        const sidebar = document.createElement('aside');
+        sidebar.className = 'sidebar';
+        sidebar.id = 'sidebar';
+        mainContent.appendChild(sidebar);
+
+        const sidebarList = document.createElement('ul');
+        sidebarList.id = 'sidebar-content';
+        sidebar.appendChild(sidebarList);
+
+        // Sidebar items with sections
+        const sidebarItemsWithSections = [
+            { section: 'My Account', items: [
+                { text: 'Create', icon: 'create.png' },
+                { text: 'Buy', icon: 'buy.png' },
+                { text: 'Messages', icon: 'message.png' },
+                { text: 'My ideas', icon: 'my ideas.png' },
+                { text: 'Drafts', icon: 'drafts.png' }
+            ]},
+            { section: 'Support', items: [
+                { text: 'Settings', icon: 'settings.png' },
+                { text: 'Contact us', icon: 'contact.png' }
+            ]}
+        ];
+
+        sidebarItemsWithSections.forEach(section => {
+            const sectionTitle = document.createElement('li');
+            sectionTitle.className = 'section-header';
+            sectionTitle.textContent = section.section;
+            sidebarList.appendChild(sectionTitle);
+
+            section.items.forEach(item => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';  // Flexbox for alignment
+                li.style.alignItems = 'center';  // Vertically align icons and text
+                li.style.gap = '10px';  // Add spacing between icons and text
+
+                // Create image element
+                const icon = document.createElement('img');
+                icon.src = item.icon;  // Path to the icon image
+                icon.alt = `${item.text} icon`;
+                icon.style.width = '20px';  // Set icon size
+
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = item.text;
+                link.style.flexGrow = '1';  // Allow text to grow and align properly
+
+                // Append the icon and text to the list item
+                li.appendChild(icon);
+                li.appendChild(link);
+                sidebarList.appendChild(li);
+            });
+        });
+
+        // Create the content section
+        const content = document.createElement('section');
+        content.className = 'content';
+        mainContent.appendChild(content);
+
+        // Create the search bar
+        const searchBar = document.createElement('div');
+        searchBar.className = 'search-bar';
+        content.appendChild(searchBar);
+
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.placeholder = 'Search';
+        searchBar.appendChild(searchInput);
+
+        const addButton = document.createElement('button');
+        addButton.className = 'add-button';
+        addButton.textContent = '+';
+        searchBar.appendChild(addButton);
+
+        // Create an idea card
+        const ideaCard = document.createElement('div');
+        ideaCard.className = 'idea-card';
+        content.appendChild(ideaCard);
+
+        const ideaHeader = document.createElement('div');
+        ideaHeader.className = 'idea-header';
+        ideaCard.appendChild(ideaHeader);
+
+        const userDetails = document.createElement('div');
+        userDetails.className = 'user-details';
+        ideaHeader.appendChild(userDetails);
+
+        const profilePic = document.createElement('div');
+        profilePic.className = 'profile-pic';
+        profilePic.textContent = 'PFP';
+        userDetails.appendChild(profilePic);
+
+        const userName = document.createElement('span');
+        userName.className = 'user-name';
+        userName.textContent = 'John Smith';
+        userDetails.appendChild(userName);
+
+        const userRole = document.createElement('span');
+        userRole.className = 'user-role';
+        userRole.textContent = 'Registered Technician';
+        userDetails.appendChild(userRole);
+
+        // Blank box under user details
+        const blankBox = document.createElement('div');
+        blankBox.className = 'blank-box';
+        userDetails.appendChild(blankBox);
+
+        const ideaContent = document.createElement('div');
+        ideaContent.className = 'idea-content';
+        ideaCard.appendChild(ideaContent);
+
+        const ideaTitle = document.createElement('h2');
+        ideaTitle.textContent = 'Idea Title';
+        ideaContent.appendChild(ideaTitle);
+
+        const ideaText = document.createElement('p');
+        ideaText.className = 'idea-text';
+        ideaText.textContent = 'Some text fillers for ideas for people to look at and use. '
+            + 'Some text fillers for ideas for people to look at and use. '
+            + 'Some text fillers for ideas for people to look at and use. '
+            + 'Some text fillers for ideas for people to look at and use.';
+        ideaContent.appendChild(ideaText);
+
+        const ideaArrow = document.createElement('div');
+        ideaArrow.className = 'idea-arrow';
+        ideaArrow.textContent = '►';
+        ideaCard.appendChild(ideaArrow);
+
+        // Create the subscriptions button and content
+        const subscriptions = document.createElement('button');
+        subscriptions.className = 'subscriptions';
+        subscriptions.id = 'subscriptions';
+        subscriptions.textContent = 'Subscriptions';
+        container.appendChild(subscriptions);
+
+        const subscriptionsContent = document.createElement('div');
+        subscriptionsContent.className = 'subscriptions-content';
+        subscriptionsContent.id = 'subscriptions-content';
+        subscriptionsContent.textContent = 'Subscription Options';
+        container.appendChild(subscriptionsContent);
+
+        // JavaScript for sidebar collapse functionality
+        toggleBtn.addEventListener('click', () => {
+            if (sidebar.classList.contains('expanded')) {
+                sidebar.classList.remove('expanded');
+            } else {
+                sidebar.classList.add('expanded');
+            }
+        });
+
+        // JavaScript for subscriptions collapse functionality
+        subscriptions.addEventListener('click', () => {
+            if (subscriptionsContent.style.display === 'block') {
+                subscriptionsContent.style.display = 'none';
+            } else {
+                subscriptionsContent.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
